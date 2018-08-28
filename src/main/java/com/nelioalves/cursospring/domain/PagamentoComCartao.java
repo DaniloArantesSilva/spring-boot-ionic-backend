@@ -1,7 +1,10 @@
 package com.nelioalves.cursospring.domain;
 
+import javax.persistence.Entity;
+
 import com.nelioalves.cursospring.domain.enums.EstadoPagamento;
 
+@Entity
 public class PagamentoComCartao extends Pagamento {
 	private static final long serialVersionUID = 1L;
 		
@@ -10,8 +13,8 @@ public class PagamentoComCartao extends Pagamento {
 	public PagamentoComCartao() {
 	}
 
-	public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido, Cliente cliente, Endereco endereco, Integer numeroDeParcelas) {
-		super(id, estado, pedido, cliente, endereco);
+	public PagamentoComCartao(Integer id, EstadoPagamento estado, Pedido pedido, Integer numeroDeParcelas) {
+		super(id, estado, pedido);
 		this.numeroDeParcelas = numeroDeParcelas;
 	}
 

@@ -3,10 +3,12 @@ package com.nelioalves.cursospring.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.nelioalves.cursospring.domain.Categoria;
 import com.nelioalves.cursospring.repositories.CategoriaRepository;
+import com.nelioalves.cursospring.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursospring.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -20,14 +22,25 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não econtrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));		
 	}
 	
-	public Categoria Insert(Categoria obj) {
+	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
 	
-	public Categoria Update(Categoria obj) {
+	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");	
+		}
+		
 	}
 	
 }

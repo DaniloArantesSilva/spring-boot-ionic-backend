@@ -11,7 +11,6 @@ import com.nelioalves.cursospring.domain.ItemPedido;
 import com.nelioalves.cursospring.domain.PagamentoComBoleto;
 import com.nelioalves.cursospring.domain.Pedido;
 import com.nelioalves.cursospring.domain.enums.EstadoPagamento;
-import com.nelioalves.cursospring.repositories.ClienteRepository;
 import com.nelioalves.cursospring.repositories.ItemPedidoRepository;
 import com.nelioalves.cursospring.repositories.PagamentoRepository;
 import com.nelioalves.cursospring.repositories.PedidoRepository;
